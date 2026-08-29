@@ -18,4 +18,4 @@
 | >= | Mayor o igual que |
 | <= | Menor o igual que |
 | == | Igual que |
-| = | Igual que |
+| = | asignación |
