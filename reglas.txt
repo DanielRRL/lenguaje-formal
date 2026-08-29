@@ -1,0 +1,29 @@
+IF bateria < 20 THEN activar_ahorro
+
+IF temperatura > 40 THEN apagar_celular
+
+IF almacenamiento < 10 THEN mostrar_advertencia
+
+IF volumen > 80 THEN reducir_volumen
+
+IF brillo > 90 THEN reducir_brillo
+
+IF señal < 30 THEN mostrar_alerta_senal
+
+IF bateria < 20 AND cargando = false THEN activar_ahorro_de_energía
+
+IF tiempo_de_pantalla > 6 AND modo_hora_de_dormir = false THEN activar_bienestar_digital
+
+IF almacenamiento_utilizado > 90 AND limpieza_automática = false THEN activar_alerta_de_almacenamiento
+
+IF ram >= 8 AND almacenamiento >= 64 THEN puede_jugar
+
+IF bateria == 80 OR bateria >= 90 THEN carga_alta
+
+IF bateria <= 20 AND cargando = true THEN mostrar_alerta_de_carga
+
+IF temperatura_de_la_batería > 40 AND refrigeración_activa = false THEN activar_refrigeración
+
+IF uso_de_datos_móviles > 80 AND wifi_conectado = false THEN mostrar_advertencia_de_datos
+
+IF aplicaciones_abiertas > 10 THEN cerrar_aplicaciones
