@@ -1,0 +1,105 @@
+BNF Lenguaje de Automatización para Dispositivos Móviles 
+
+Gramática corregida 
+
+ 
+<programa> ::= { <sentencia_global> } 
+ 
+<sentencia_global> ::= <declaracion> 
+                      | <regla> 
+ 
+<declaracion> ::= "umbral" <identificador> ":=" <numero> ";" 
+ 
+<regla> ::= "IF" <condicion_compuesta> 
+            "THEN" <bloque> 
+            [ "ELSE" <bloque> ] 
+            "END" 
+ 
+<bloque> ::= <sentencia> { <sentencia> } 
+ 
+<sentencia> ::= <accion> ";" 
+              | <asignacion> 
+              | <notificacion> 
+ 
+<accion> ::= "reducir_brillo" 
+           | "activar_ahorro_de_energia" 
+           | "activar_bienestar_digital" 
+ 
+<condicion_compuesta> ::= <exp_or> 
+ 
+<exp_or> ::= <exp_and> 
+           | <exp_and> "OR" <exp_or> 
+ 
+<exp_and> ::= <factor_logico> 
+            | <factor_logico> "AND" <exp_and> 
+ 
+<factor_logico> ::= <condicion> 
+                  | "NOT" <factor_logico> 
+ 
+<condicion> ::= <expresion_relacional> 
+                <operador_relacional> 
+                <expresion_relacional> 
+ 
+<operador_relacional> ::= ">" 
+                        | "<" 
+                        | ">=" 
+                        | "<=" 
+                        | "==" 
+                        | "!=" 
+ 
+<expresion_relacional> ::= <numero> 
+                         | <identificador> 
+                         | <proceso_sistema> 
+ 
+<asignacion> ::= <destino> ":=" <expresion> ";" 
+ 
+<expresion> ::= <termino> 
+              | <expresion> "+" <termino> 
+              | <expresion> "-" <termino> 
+ 
+<termino> ::= <factor> 
+            | <termino> "*" <factor> 
+            | <termino> "/" <factor> 
+ 
+<factor> ::= <numero> 
+           | <identificador> 
+           | <proceso_sistema> 
+           | "(" <expresion> ")" 
+ 
+<destino> ::= <proceso_sistema> | <identificador> 
+ 
+<notificacion> ::= "notificar" "(" <argumento> { "," <argumento> } ")" ";" 
+ 
+<argumento> ::= <cadena> 
+              | <numero> 
+              | <identificador> 
+              | <proceso_sistema> 
+ 
+<cadena> ::= '"' { <caracter> } '"' 
+ 
+<caracter> ::= cualquier_caracter_imprimible_excepto_comillas 
+ 
+<proceso_sistema> ::= "brillo" | "volumen" 
+ 
+<identificador> ::= <letra> { <letra> | <digito> | "_" } 
+ 
+<numero> ::= ["-"] <entero> ["." <entero>] 
+ 
+<entero> ::= <digito> { <digito> } 
+ 
+<digito> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+ 
+<letra> ::= "a" | ... | "z" 
+ 
+
+Ejemplos válidos 
+
+IF brillo > 80 THEN 
+    reducir_brillo; 
+END 
+
+IF volumen >= 70 AND brillo > 60 THEN 
+    activar_bienestar_digital; 
+ELSE 
+    activar_ahorro_de_energia; 
+END 
