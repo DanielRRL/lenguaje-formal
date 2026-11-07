@@ -1,0 +1,23 @@
+# programa de ejemplo: control de brillo y volumen
+umbral limite_brillo := 80;
+umbral brillo_minimo := 15.5;
+umbral volumen_noche := 25;
+
+/* ajuste de brillo:
+   se reduce a la mitad
+   si supera el limite */
+brillo := limite_brillo / 2;
+volumen := volumen - 10;
+notificar("brillo ajustado", brillo);
+
+IF brillo > limite_brillo THEN
+    reducir_brillo;
+END
+
+IF volumen >= 70 AND brillo > 60 THEN
+    activar_bienestar_digital;
+ELSE
+    activar_ahorro_de_energia;
+END
+
+notificar("volumen actual", volumen, 3.5 * 2);
