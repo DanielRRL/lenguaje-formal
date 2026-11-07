@@ -1,17 +1,6 @@
 texto = "a1b22c"
 
-#i = 0
-
-#while i < len(texto):
-#   print(i, texto[i])
-#  i += 1
-    
-#texto = "a1b22c"
-
-i = 0
-
-while i < len(texto):
-    if texto[i].isdigit():
-        print(texto[i])
-
-    i += 1
+# for recorre el texto sin manejar el índice a mano; mismo resultado.
+for c in texto:
+    if c.isdigit():
+        print(c)
