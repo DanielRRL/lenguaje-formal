@@ -1,13 +1,14 @@
 def tokenizar(texto):
     tokens = []
     i = 0
+    n = len(texto)  # Se calcula una vez; el texto no cambia.
 
-    while i < len(texto):
+    while i < n:
         c = texto[i]
 
         if c.isdigit():
             inicio = i
-            while i < len(texto) and texto[i].isdigit():
+            while i < n and texto[i].isdigit():
                 i += 1
             tokens.append(("NUMERO", texto[inicio:i], inicio + 1))
         else:
