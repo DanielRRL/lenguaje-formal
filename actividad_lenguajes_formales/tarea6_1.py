@@ -12,8 +12,9 @@ def tokenizar(texto):
     i = 0
     linea = 1
     inicio_linea = 0
+    n = len(texto)  # Se calcula una vez; el texto no cambia.
 
-    while i < len(texto):
+    while i < n:
         c = texto[i]
 
         if c == "\n":
@@ -24,23 +25,24 @@ def tokenizar(texto):
         elif c.isspace():
             i += 1
 
-        elif texto.startswith(COMENTARIO, i):
-            while i < len(texto) and texto[i] != "\n":
+        # COMENTARIO es de un carácter; comparar c evita startswith.
+        elif c == COMENTARIO:
+            while i < n and texto[i] != "\n":
                 i += 1
 
         elif c.isdigit():
             inicio = i
-            while i < len(texto) and texto[i].isdigit():
+            while i < n and texto[i].isdigit():
                 i += 1
-            if i + 1 < len(texto) and texto[i] == "." and texto[i + 1].isdigit():
+            if i + 1 < n and texto[i] == "." and texto[i + 1].isdigit():
                 i += 1
-                while i < len(texto) and texto[i].isdigit():
+                while i < n and texto[i].isdigit():
                     i += 1
             tokens.append(("NUMERO", texto[inicio:i], linea, inicio - inicio_linea + 1))
 
         elif c.isalpha():
             inicio = i
-            while i < len(texto) and (texto[i].isalnum() or texto[i] == "_"):
+            while i < n and (texto[i].isalnum() or texto[i] == "_"):
                 i += 1
             palabra = texto[inicio:i]
             tipo = "TIPO" if palabra in TIPOS else "IDENTIFICADOR"
