@@ -2,21 +2,21 @@ from tarea6_3 import ErrorLexico, tokenizar
 
 
 casos = [
-    {
-        "nombre": "Válido 1: declaración simple con espacios",
-        "entrada": "umbral umbrales := 20;",
-        "esperado": [
+    (
+        "Válido 1: declaración simple con espacios",
+        "umbral umbrales := 20;",
+        [
             ("TIPO", "umbral", 1, 1),
             ("IDENTIFICADOR", "umbrales", 1, 8),
             ("SIMBOLO", ":=", 1, 17),
             ("NUMERO", "20", 1, 20),
             ("SIMBOLO", ";", 1, 22),
         ],
-    },
-    {
-        "nombre": "Válido 2: sin espacios y con operadores",
-        "entrada": "umbral total:=a+5*2;",
-        "esperado": [
+    ),
+    (
+        "Válido 2: sin espacios y con operadores",
+        "umbral total:=a+5*2;",
+        [
             ("TIPO", "umbral", 1, 1),
             ("IDENTIFICADOR", "total", 1, 8),
             ("SIMBOLO", ":=", 1, 13),
@@ -27,11 +27,11 @@ casos = [
             ("NUMERO", "2", 1, 19),
             ("SIMBOLO", ";", 1, 20),
         ],
-    },
-    {
-        "nombre": "Válido 3: dos líneas, comentario, decimal y cadena",
-        "entrada": 'umbral precio := 3.14; # comentario\numbral nombre := "hola";',
-        "esperado": [
+    ),
+    (
+        "Válido 3: dos líneas, comentario, decimal y cadena",
+        'umbral precio := 3.14; # comentario\numbral nombre := "hola";',
+        [
             ("TIPO", "umbral", 1, 1),
             ("IDENTIFICADOR", "precio", 1, 8),
             ("SIMBOLO", ":=", 1, 15),
@@ -43,41 +43,42 @@ casos = [
             ("CADENA", '"hola"', 2, 18),
             ("SIMBOLO", ";", 2, 24),
         ],
-    },
-    {
-        "nombre": "Inválido 1: carácter inexistente",
-        "entrada": "umbral x := 5 @;",
-        "esperado": "ERROR: Carácter inesperado '@' en línea 1, columna 15",
-    },
-    {
-        "nombre": "Inválido 2: declaración al estilo Java",
-        "entrada": "umbral x = 5;",
-        "esperado": "ERROR: Carácter inesperado '=' en línea 1, columna 10",
-    },
-    {
-        "nombre": "Inválido 3: cadena sin cerrar en la segunda línea",
-        "entrada": 'umbral a := 1;\numbral b := "hola;',
-        "esperado": "ERROR: Cadena sin cerrar que empieza en línea 2, columna 13",
-    },
+    ),
+    (
+        "Inválido 1: carácter inexistente",
+        "umbral x := 5 @;",
+        "ERROR: Carácter inesperado '@' en línea 1, columna 15",
+    ),
+    (
+        "Inválido 2: declaración al estilo Java",
+        "umbral x = 5;",
+        "ERROR: Carácter inesperado '=' en línea 1, columna 10",
+    ),
+    (
+        "Inválido 3: cadena sin cerrar en la segunda línea",
+        'umbral a := 1;\numbral b := "hola;',
+        "ERROR: Cadena sin cerrar que empieza en línea 2, columna 13",
+    ),
 ]
 
 
 coinciden = 0
 
-for caso in casos:
+# Tuplas + desempaquetado: menos claves repetidas y bucle directo.
+for nombre, entrada, esperado in casos:
     print("=" * 60)
-    print(caso["nombre"])
-    print("Entrada:", repr(caso["entrada"]))
+    print(nombre)
+    print("Entrada:", repr(entrada))
 
     try:
-        real = tokenizar(caso["entrada"])
+        real = tokenizar(entrada)
     except ErrorLexico as e:
         real = f"ERROR: {e}"
 
-    print("Esperado:", caso["esperado"])
+    print("Esperado:", esperado)
     print("Real:    ", real)
 
-    if real == caso["esperado"]:
+    if real == esperado:
         print("¿Coincide?: SÍ")
         coinciden += 1
     else:
