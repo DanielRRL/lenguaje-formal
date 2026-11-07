@@ -1,15 +1,6 @@
 def digitos(texto):
-    tokens = []
-
-    i = 0
-
-    while i < len(texto):
-        if texto[i].isdigit():
-            tokens.append(("DIGITO", texto[i]))
-
-        i += 1
-
-    return tokens
+    # La comprensión filtra y construye la lista en una sola pasada.
+    return [("DIGITO", c) for c in texto if c.isdigit()]
 
 
 print(digitos("a1b22c"))
