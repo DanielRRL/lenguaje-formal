@@ -1,7 +1,8 @@
 # Cada caso: (nombre, entrada, salida esperada calculada a mano).
 # La salida esperada es una lista de (tipo, texto, línea, columna)
 # o, si el caso es un error, el mensaje completo.
-# Desde la Tarea 12 toda lista termina con el token EOF.
+# Los casos de Tarea 12 en adelante incluyen el token EOF;
+# los de T8-T11 conservan su salida original sin EOF.
 
 CASOS = [
     # ---------------- Tarea 8: delimitadores ----------------
