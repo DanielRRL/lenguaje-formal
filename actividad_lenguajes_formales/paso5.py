@@ -2,12 +2,9 @@ texto = "a1b22c"
 
 tokens = []
 
-i = 0
-
-while i < len(texto):
-    if texto[i].isdigit():
-        tokens.append(("DIGITO", texto[i]))
-
-    i += 1
+# for evita el índice y conserva el orden de los dígitos.
+for c in texto:
+    if c.isdigit():
+        tokens.append(("DIGITO", c))
 
 print(tokens)
