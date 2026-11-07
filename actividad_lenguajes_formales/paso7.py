@@ -1,31 +1,19 @@
 def digitos(texto):
     tokens = []
 
-    i = 0
-
-    while i < len(texto):
-        c = texto[i]
-
+    # Se recorre una sola vez: dígitos se guardan, letras se ignoran.
+    for c in texto:
         if c.isdigit():
             tokens.append(("DIGITO", c))
-
-        elif c.isalpha():
-            pass
-
-        else:
+        elif not c.isalpha():
             raise SyntaxError(f"Carácter inesperado '{c}'")
-
-        i += 1
 
     return tokens
 
 
-try:
-    print(digitos("a1b"))
-except SyntaxError as e:
-    print(e)
-
-try:
-    print(digitos("a1@"))
-except SyntaxError as e:
-    print(e)
+# Un solo bucle evita repetir el try/except para cada entrada.
+for entrada in ("a1b", "a1@"):
+    try:
+        print(digitos(entrada))
+    except SyntaxError as e:
+        print(e)
