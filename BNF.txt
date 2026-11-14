@@ -8,7 +8,7 @@ Gramática corregida
 <sentencia_global> ::= <declaracion> 
                       | <regla> 
  
-<declaracion> ::= "umbral" <identificador> ":=" <numero> ";" 
+<declaracion> ::= "umbral" <identificador> ":=" <expresion> ";" 
  
 <regla> ::= "IF" <condicion_compuesta> 
             "THEN" <bloque> 
@@ -62,6 +62,7 @@ Gramática corregida
             | <termino> "/" <factor> 
  
 <factor> ::= <numero> 
+           | <cadena> 
            | <identificador> 
            | <proceso_sistema> 
            | "(" <expresion> ")" 
@@ -93,6 +94,8 @@ Gramática corregida
  
 
 Ejemplos válidos 
+
+umbral r := 10 - 3 - 2;
 
 IF brillo > 80 THEN 
     reducir_brillo; 
