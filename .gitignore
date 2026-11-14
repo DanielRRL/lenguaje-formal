@@ -1,2 +1,5 @@
 __pycache__/
 *.py[cod]
+
+# Guías de estudio locales; no se publican.
+GUIA_*.md
