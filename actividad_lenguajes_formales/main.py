@@ -1,8 +1,9 @@
 import sys
 
+from arbol import mostrar_arbol
 from lexer import tokenizar
 from parser import Parser
-from tokens import ErrorLexico
+from tokens import ErrorDeLenguaje
 
 
 def main():
@@ -20,20 +21,13 @@ def main():
         sys.exit(1)
 
     try:
-        tokens = tokenizar(texto)
-    except ErrorLexico as e:
-        # ErrorLexico trae el mensaje y la posición por separado.
+        programa = Parser(tokenizar(texto)).programa()
+        mostrar_arbol(programa)
+    except ErrorDeLenguaje as e:
+        # La clase base atrapa errores léxicos y sintácticos.
         print(e)
         print(f"linea = {e.linea}, columna = {e.columna}")
         sys.exit(1)
-
-    parser = Parser(tokens)
-    while True:
-        token = parser.actual()
-        print(token)
-        if token.tipo == "EOF":
-            break
-        parser.avanzar()
 
 
 if __name__ == "__main__":
