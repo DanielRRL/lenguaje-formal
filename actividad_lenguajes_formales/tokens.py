@@ -14,10 +14,20 @@ class Token:
         return f"{self.tipo}({self.texto!r}) en {self.linea}:{self.columna}"
 
 
-class ErrorLexico(Exception):
+class ErrorDeLenguaje(Exception):
+    fase = "Error"
+
     def __init__(self, mensaje: str, linea: int, columna: int):
-        # super().__init__ guarda el mensaje completo del error.
-        super().__init__(f"Error léxico en línea {linea}, columna {columna}: {mensaje}")
+        # La clase base guarda el mensaje completo y la posición.
+        super().__init__(f"{self.fase} en línea {linea}, columna {columna}: {mensaje}")
         self.mensaje = mensaje
         self.linea = linea
         self.columna = columna
+
+
+class ErrorLexico(ErrorDeLenguaje):
+    fase = "Error léxico"
+
+
+class ErrorSintactico(ErrorDeLenguaje):
+    fase = "Error sintáctico"
