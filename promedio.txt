@@ -1,0 +1,7 @@
+umbral promedio := (3.0 + 4.0 + 5.0) / 3.0;
+notificar(promedio);
+IF promedio >= 3.0 THEN
+    notificar("aprueba");
+ELSE
+    notificar("reprueba");
+END

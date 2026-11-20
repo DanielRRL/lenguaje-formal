@@ -1,0 +1,5 @@
+umbral n := 1;
+WHILE n <= 5 DO
+    notificar(n * 3);
+    n := n + 1;
+END

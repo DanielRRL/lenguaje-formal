@@ -1,0 +1,7 @@
+umbral n := 5;
+umbral resultado := 1;
+WHILE n > 1 DO
+    resultado := resultado * n;
+    n := n - 1;
+END
+notificar(resultado);
